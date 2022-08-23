@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ly.img.android.pesdk.ui.widgets.EditorRootView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rootView"
+    style="?attr/Imgly.PESDK.Editor.Activity">
+
+    <ly.img.android.pesdk.backend.views.EditorPreview
+        android:id="@id/editorImageView"
+        style="?attr/Imgly.PESDK.Editor.Activity.Preview"
+        android:layout_below="@id/imgly_custom_view" />
+
+    <ly.img.android.pesdk.ui.widgets.ToolContainer
+        android:id="@+id/toolPanelContainer"
+        style="?attr/Imgly.PESDK.Editor.Activity.ToolPanelContainer" />
+
+    <ly.img.android.pesdk.ui.widgets.ImgLyTitleBar
+        android:id="@+id/imglyActionBar"
+        style="?attr/Imgly.PESDK.Editor.Activity.ActionBar" />
+
+    <ly.img.android.pesdk.ui.widgets.ProgressView style="?attr/Imgly.PESDK.Editor.Activity.Progress" />
+
+    <ly.img.catalog.examples.user_interface.custom_views.ImglyCustomView
+        android:id="@+id/imgly_custom_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</ly.img.android.pesdk.ui.widgets.EditorRootView>

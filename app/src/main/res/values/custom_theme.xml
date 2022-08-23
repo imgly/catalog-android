@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="CustomSmallOptionItem" parent="Imgly.PESDK.Editor.Panel.SmallOptionItem">
+        <item name="android:layout_width">24dp</item>
+        <item name="android:layout_height">24dp</item>
+    </style>
+
+    <!--highlight-custom-theme-->
+    <style name="CustomImglyTheme" parent="Theme.Imgly">
+        <!-- Colors -->
+        <!--highlight-colors-->
+        <item name="imgly_icon_border_color_active">@color/teal_200</item>
+        <item name="imgly_background_color">@color/teal_200</item>
+        <!--highlight-colors-->
+
+        <!-- Styles -->
+        <!--highlight-styles-->
+        <item name="Imgly.PESDK.Editor.Panel.SmallOptionItem">@style/CustomSmallOptionItem</item>
+        <!--highlight-styles-->
+    </style>
+    <!--highlight-custom-theme-->
+</resources>

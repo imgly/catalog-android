@@ -1,0 +1,77 @@
+package ly.img.catalog.examples.opening_assets.pesdk
+
+import android.app.Activity
+import android.content.ActivityNotFoundException
+import android.content.Intent
+import android.net.Uri
+import android.provider.MediaStore
+import androidx.appcompat.app.AppCompatActivity
+import ly.img.android.pesdk.PhotoEditorSettingsList
+import ly.img.android.pesdk.backend.model.EditorSDKResult
+import ly.img.android.pesdk.backend.model.state.LoadSettings
+import ly.img.android.pesdk.ui.activity.PhotoEditorBuilder
+import ly.img.catalog.examples.Example
+
+// <code-region>
+class OpenPhotoFromGallery(private val activity: AppCompatActivity) : Example(activity) {
+
+    companion object {
+        private const val GALLERY_REQUEST_CODE = 0x69
+    }
+
+    override fun invoke() {
+        // highlight-open-gallery
+        val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+        try {
+            activity.startActivityForResult(intent, GALLERY_REQUEST_CODE)
+        } catch (ex: ActivityNotFoundException) {
+            showMessage("No Gallery app installed")
+        }
+        // highlight-open-gallery
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, intent: Intent?) {
+        super.onActivityResult(requestCode, resultCode, intent)
+        intent ?: return
+        when (requestCode) {
+            EDITOR_REQUEST_CODE -> {
+                val result = EditorSDKResult(intent)
+                when (result.resultStatus) {
+                    EditorSDKResult.Status.CANCELED -> showMessage("Editor cancelled")
+                    EditorSDKResult.Status.EXPORT_DONE -> showMessage("Result saved at ${result.resultUri}")
+                    else -> {
+                    }
+                }
+            }
+            // highlight-gallery-result
+            GALLERY_REQUEST_CODE -> {
+                if (resultCode == Activity.RESULT_OK) {
+                    intent.data?.let { showEditor(it) } ?: showMessage("Invalid Uri")
+                } else if (resultCode == Activity.RESULT_CANCELED) {
+                    showMessage("User cancelled selection")
+                }
+            }
+            //highlight-gallery-result
+        }
+    }
+
+    // highlight-editor
+    private fun showEditor(uri: Uri) {
+        // In this example, we do not need access to the Uri(s) after the editor is closed
+        // so we pass false in the constructor
+        val settingsList = PhotoEditorSettingsList(false)
+            // Set the source as the Uri of the image to be loaded
+            .configure<LoadSettings> {
+                it.source = uri
+            }
+        // Start the photo editor using PhotoEditorBuilder
+        // The result will be obtained in onActivityResult() corresponding to EDITOR_REQUEST_CODE
+        PhotoEditorBuilder(activity)
+            .setSettingsList(settingsList)
+            .startActivityForResult(activity, EDITOR_REQUEST_CODE)
+        // Release the SettingsList once done
+        settingsList.release()
+    }
+    // highlight-editor
+}
+// <code-region>
