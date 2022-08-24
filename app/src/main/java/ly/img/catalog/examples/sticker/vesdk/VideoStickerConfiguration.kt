@@ -61,6 +61,7 @@ class VideoStickerConfiguration(private val activity: AppCompatActivity) : Examp
             it.optionList.set(it.optionList.filter { item ->
                 item.id == StickerOptionToolPanel.OPTION_REPLACE
                     || item.id == StickerOptionToolPanel.OPTION_COLOR_COLORIZED
+                    || item.id == StickerOptionToolPanel.OPTION_DURATION
             })
             // highlight-tools
 

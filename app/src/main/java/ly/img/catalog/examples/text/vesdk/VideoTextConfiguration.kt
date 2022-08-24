@@ -10,6 +10,7 @@ import ly.img.android.pesdk.backend.model.config.ColorAsset
 import ly.img.android.pesdk.backend.model.state.LoadSettings
 import ly.img.android.pesdk.ui.activity.VideoEditorBuilder
 import ly.img.android.pesdk.ui.model.state.UiConfigText
+import ly.img.android.pesdk.ui.panels.TextOptionToolPanel
 import ly.img.android.pesdk.ui.panels.item.ColorItem
 import ly.img.catalog.R
 import ly.img.catalog.examples.Example
@@ -33,6 +34,16 @@ class VideoTextConfiguration(private val activity: AppCompatActivity) : Example(
             // highlight-text-align
             it.setDefaultTextAlignment(Paint.Align.LEFT)
             // highlight-text-align
+
+            // By default all available text tools are enabled
+            // For this example only a couple are enabled
+            // highlight-tools
+            it.optionList.set(it.optionList.filter { item ->
+                item.id == TextOptionToolPanel.OPTION_DURATION
+                    || item.id == TextOptionToolPanel.OPTION_FONT
+                    || item.id == TextOptionToolPanel.OPTION_COLOR
+            })
+            // highlight-tools
 
             // By default the editor provides a variety of different colors to customize the color of the text
             // For this example only a small selection of colors is shown by default e.g. based on favorite colors of the user
