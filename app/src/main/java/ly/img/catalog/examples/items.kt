@@ -81,11 +81,14 @@ import ly.img.catalog.examples.transform.PhotoTransform
 import ly.img.catalog.examples.transform.VideoTransform
 import ly.img.catalog.examples.trim.TrimConfiguration
 import ly.img.catalog.examples.trim.TrimEnforceDuration
+import ly.img.catalog.examples.user_interface.custom_tool.CustomOverlayTool
 import ly.img.catalog.examples.user_interface.pesdk.CustomPhotoEditor
 import ly.img.catalog.examples.user_interface.pesdk.PhotoCustomizeMenuItems
+import ly.img.catalog.examples.user_interface.pesdk.PhotoSingleTool
 import ly.img.catalog.examples.user_interface.pesdk.PhotoTheming
 import ly.img.catalog.examples.user_interface.vesdk.CustomVideoEditor
 import ly.img.catalog.examples.user_interface.vesdk.VideoCustomizeMenuItems
+import ly.img.catalog.examples.user_interface.vesdk.VideoSingleTool
 import ly.img.catalog.examples.user_interface.vesdk.VideoTheming
 import ly.img.catalog.examples.watermark.PhotoWatermark
 import ly.img.catalog.examples.watermark.VideoWatermark
@@ -185,7 +188,7 @@ val photoExamples = listOf(
         "User Interface", listOf(
             ExampleItem(
                 "Theming",
-                "Present the photo editor using a custom theme",
+                "Presents the photo editor using a custom theme",
                 PhotoTheming::class
             ),
             ExampleItem(
@@ -194,9 +197,19 @@ val photoExamples = listOf(
                 PhotoCustomizeMenuItems::class
             ),
             ExampleItem(
+                "Single Tool Use",
+                "Presents the photo editor in single tool mode",
+                PhotoSingleTool::class
+            ),
+            ExampleItem(
                 "Custom Activity",
                 "Presents the photo editor using a custom Activity",
                 CustomPhotoEditor::class
+            ),
+            ExampleItem(
+                "Custom Tool",
+                "Presents the photo editor with a customized overlay tool",
+                CustomOverlayTool::class
             )
         )
     ),
@@ -354,7 +367,7 @@ val photoExamples = listOf(
             ),
             ExampleItem(
                 "Customize Snapping",
-                "Present the photo editor using a custom snapping configuration",
+                "Presents the photo editor using a custom snapping configuration",
                 PhotoSnappingConfiguration::class
             ),
             ExampleItem(
@@ -462,13 +475,18 @@ val videoExamples = listOf(
         "User Interface", listOf(
             ExampleItem(
                 "Theming",
-                "Present the video editor using a custom theme",
+                "Presents the video editor using a custom theme",
                 VideoTheming::class
             ),
             ExampleItem(
                 "Customize Menu Items",
                 "Presents the video editor with customized menu items",
                 VideoCustomizeMenuItems::class
+            ),
+            ExampleItem(
+                "Single Tool Use",
+                "Presents the video editor in single tool mode",
+                VideoSingleTool::class
             ),
             ExampleItem(
                 "Custom Activity",
@@ -673,7 +691,7 @@ val videoExamples = listOf(
             ),
             ExampleItem(
                 "Customize Snapping",
-                "Present the video editor using a custom snapping configuration",
+                "Presents the video editor using a custom snapping configuration",
                 VideoSnappingConfiguration::class
             ),
             ExampleItem(
