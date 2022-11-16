@@ -1,0 +1,26 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rootView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ly.img.android.pesdk.ui.widgets.GridListView
+        android:id="@+id/grid"
+        app:spanSize="64dp"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:paddingBottom="72dp"
+        android:layout_alignParentBottom="true"
+        android:background="?attr/imgly_sticker_selection_background_color" />
+
+    <RelativeLayout
+        android:id="@+id/optionBar"
+        android:layout_alignParentBottom="true"
+        style="?attr/Imgly.PESDK.Editor.Panel.default.OptionContainer">
+
+        <ly.img.android.pesdk.ui.widgets.HorizontalListView
+            android:id="@+id/overlayList"
+            app:animateItems="true"
+            style="?attr/Imgly.PESDK.default.OptionList" />
+    </RelativeLayout>
+</RelativeLayout>
