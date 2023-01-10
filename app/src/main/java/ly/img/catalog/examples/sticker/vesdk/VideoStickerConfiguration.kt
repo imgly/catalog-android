@@ -8,16 +8,23 @@ import ly.img.android.pesdk.assets.sticker.shapes.StickerPackShapes
 import ly.img.android.pesdk.backend.decoder.ImageSource
 import ly.img.android.pesdk.backend.model.EditorSDKResult
 import ly.img.android.pesdk.backend.model.config.ColorAsset
+import ly.img.android.pesdk.backend.model.config.ImageStickerAsset
+import ly.img.android.pesdk.backend.model.config.MultiImageStickerAsset
 import ly.img.android.pesdk.backend.model.state.LoadSettings
 import ly.img.android.pesdk.ui.activity.VideoEditorBuilder
 import ly.img.android.pesdk.ui.model.state.UiConfigSticker
 import ly.img.android.pesdk.ui.panels.StickerOptionToolPanel
 import ly.img.android.pesdk.ui.panels.item.ColorItem
 import ly.img.android.pesdk.ui.panels.item.CustomStickerCategoryItem
+import ly.img.android.pesdk.ui.panels.item.MetadataImageStickerItem
 import ly.img.android.pesdk.ui.panels.item.PersonalStickerAddItem
+import ly.img.android.pesdk.ui.panels.item.StickerCategoryItem
 import ly.img.catalog.R
 import ly.img.catalog.examples.Example
+import ly.img.catalog.examples.sticker.ExampleMetadataFragment
 import ly.img.catalog.examples.sticker.ExampleStickersFragment
+import ly.img.catalog.examples.sticker.SmartLinkTextSticker0
+import ly.img.catalog.examples.sticker.SmartLinkTextSticker1
 import ly.img.catalog.examples.sticker.TestWeatherProvider
 import ly.img.catalog.resourceUri
 
@@ -51,9 +58,32 @@ class VideoStickerConfiguration(private val activity: AppCompatActivity) : Examp
                     ExampleStickersFragment::class.java,
                     "Custom Stickers",
                     ImageSource.create(ly.img.android.pesdk.assets.sticker.emoticons.R.drawable.imgly_sticker_emoticons_hitman)
-                )
+                ),
                 // highlight-custom-stickers
+                // highlight-metadata-stickers
+                StickerCategoryItem(
+                    "custom_smart_sticker_category",
+                    "Custom",
+                    ImageSource.create(SmartLinkTextSticker0::class.java),
+                    MetadataImageStickerItem(
+                        "imgly_smart_sticker_custom_text",
+                        ExampleMetadataFragment::class.java,
+                        "Custom Link Text",
+                        ImageSource.create(SmartLinkTextSticker0::class.java)
+                    )
+                )
             )
+
+            // Add the asset for our custom smart sticker to the AssetConfig
+            settingsList.config.addAsset(
+                MultiImageStickerAsset(
+                    id = "imgly_smart_sticker_custom_text", stickerAssets = arrayListOf(
+                        ImageStickerAsset("imgly_smart_sticker_custom_text_0", ImageSource.create(SmartLinkTextSticker0::class.java)),
+                        ImageStickerAsset("imgly_smart_sticker_custom_text_1", ImageSource.create(SmartLinkTextSticker1::class.java))
+                    )
+                )
+            )
+            // highlight-metadata-stickers
 
             // By default all available sticker tools are enabled
             // For this example only a couple are enabled
